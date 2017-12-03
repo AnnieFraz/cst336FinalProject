@@ -194,7 +194,6 @@ body {font-family: Verdana, sans-serif;}
                         <th>Time</th>
                     </thead>
                     <tbody></tbody>
-                    <tbody></tbody>
                 </table>
                 <img class="loading" src="loading_spinner.gif" />
             <!--</div>-->
@@ -227,8 +226,6 @@ body {font-family: Verdana, sans-serif;}
                         console.log("Data:", data);
                         console.log("lol:", data.events)
 
-                        // Print the standings
-                        
                         for (var i in data.events) {
                             var data1 = data.events[i];
                             console.log("Data:", data1);
