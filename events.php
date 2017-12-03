@@ -213,7 +213,7 @@ body {font-family: Verdana, sans-serif;}
 
                 $.ajax({
                         // The URL for the request
-                        url: "/Final_Project/eventsJSON.php",
+                        url: "eventsJSON.php",
 
                         // Whether this is a POST or GET request
                         type: "GET",
