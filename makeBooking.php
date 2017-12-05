@@ -1,4 +1,6 @@
 <?php
+include 'dbConfig.php';
+$conn = getDatabaseConnection();
 ?>
 <html>
 <head>
@@ -31,7 +33,7 @@
       </form> 
       </center>
             <br></br>
-            <form id='Make Booking' action='add.php' method='POST' accept-charset='UTF-8'>
+            <form id='Make Booking'  method='POST' accept-charset='UTF-8'>
                 <fieldset>
                     <legend>Make Booking</legend>
                     <input type='hidden' name='submitted' id='submitted' value='1'/>
@@ -41,61 +43,30 @@
                     <label for='time'>What Time:</label>
                     <input id="time" type="time"><br><br>
                     <label for='number'>How Long (hours):</label>
-                    <input type="number" name="quantity" min="1" max="5"><br>
+                    <input type="number" name="quantity" id="number" min="1" max="5"><br>
                     <input type='submit' name='Submit' value='Submit'/>                </fieldset>
             </form>
             <h2>Your Bookings</h2>
-            <?php
             
-            ?>
             <br></br>
-            
-            <?php
-session_start();
-if (!isset($_SESSION['username'])) { //if not set, it means that admin hasn't logged in
-    header("Location: roomBooking.php"); //redirects users to login page
-    exit;
-};
-    $time = $_POST['time'];
-         $quantity = $_POST['quantity'];
-         $date =$_POST['date'];
-         
-    $sql = "INSERT INTO `room_booking`(`date_booked_for`, `time_booked_for`,`length_of_stay`) VALUES (:date,:time,:quantity)";
-
-   $stmt = $dbConn->prepare($sql);
-    $stmt -> execute (array(':time' => $time,
-                            ':quantity'=> $quantity,
-                            ':date'=> $date));
-   //$record = $stmt->fetch();
-   
-   
-
-?>
-            
-            
             <center>
-                
-                
-                
             <?php
             $date = date("D/M/Y");
             $date2 = date("Y-m-d");
             echo"<h2>Room Bookings for Today: ".$date."</h2>";
             
-            include 'dbConfig.php';
- $conn = getDatabaseConnection();
-      global $conn;
     $sql = "SELECT * 
 FROM  `room_booking`
 WHERE  `admin_id` = :id
 AND `room_booking_id`=:room_id";
     
 
-$namedParameters = array();
-    $namedParameters[':id'] = 10;  
-    $namedParameters[':room_id'] = 10;
+//$namedParameters = array();
+    //$namedParameters[':id'] = 3;  
+    //$namedParameters[':room_id'] = 1;
     $statement = $conn->prepare($sql);    
-    $statement->execute($namedParameters);
+    $statement->execute(array(':id'=>1,
+    ':room_id'=>3));
     $results = $statement->fetchAll();
     
     echo "<table border=1><tr><td><strong>DATE</strong></td><td><strong>TIME</strong></td><td><strong>CHANGE</strong></td></tr>";
@@ -107,9 +78,6 @@ $namedParameters = array();
 echo "</td><td>";
 	echo $record['time_booked_for'];
 	echo "</td><td>";
-	echo " <form action='inc/update.php'>";
-          echo "<input type='hidden' name='admin_id' value='".$record['admin_id'] . "'/>";
-          echo "<input type='submit' value='Update'/></form> ";
 	echo "<form action='delete.php'>";
           echo "<input type='hidden' name='admin_id' value='".$record['admin_id'] . "'/>";
           echo "<input type='submit' value='Delete' name='deleteForm'/></form>";
@@ -124,6 +92,26 @@ echo "</table>";
             ?>
               
             </center>
+            <?php
+            
+//session_start();
+//if (!isset($_SESSION['username'])) { //if not set, it means that admin hasn't logged in
+//    header("Location: roomBooking.php"); //redirects users to login page
+  //  exit;
+//};
+    $time = $_POST['time'];
+         $quantity = $_POST['quantity'];
+         $date =$_POST['date'];
+         
+    $sql = "INSERT INTO room_booking(date_booked_for, time_booked_for,length_of_stay) VALUES (:date,:time,:quantity)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt -> execute (array(':time' => $time,
+                            ':quantity'=> $quantity,
+                            ':date'=> $date));
+   //$record = $stmt->fetch();
+   
+?>
          </body>
           <footer>
             <br></br>

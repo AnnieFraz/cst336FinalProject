@@ -1,5 +1,5 @@
 <?php
-include 'dbConfig.php';
+include 'connection.php';
  $conn = getDatabaseConnection();
  
  if (isset($_GET['deleteForm'])) {  

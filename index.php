@@ -29,9 +29,7 @@
         <br/><br />
         <main>
             
-            
-            <embed width="620" height="420"
-src="video/promo.mp4">
+            <embed width="620" height="420" src="video/promo.mp4">
 
      <center>      
 <div id="welcomeText" style="width:80%;text-align: center;">
@@ -55,5 +53,4 @@ src="video/promo.mp4">
             <h3>Live Music Society - University of Stirling</h3>
             <br></br>
         </footer>
-        
 </html>

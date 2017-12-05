@@ -6,7 +6,6 @@
         <link rel="shortcut icon" href="img/logo.jpg" type="image/png">
         <title>SU Live Music Society</title>
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
-        
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
@@ -36,6 +35,7 @@
         <header>
             <h1>Stirling University Live Music Society</h1>
         </header>
+        <!--Nav bar-->
         <nav>
             <hr width="50%"/>
             <a href="index.php">Home</a>
@@ -44,9 +44,10 @@
             <a href="roomBooking.php">Room Booking</a>
             <a href="contact.php">Contact</a>
         </nav>
+        
         <body>
             <h2>Our Photos</h2>
-            
+            <!--Image Gallery-->
             <div class="gallery" align="center"></div>
             <center>
             <div class="thumbnails">
@@ -67,6 +68,7 @@
         
         <footer>
             <br></br>
+            <!--Social Media Handles-->
             <a href="https://twitter.com/SULiveMusic" style="color:white; font-size:25px;"><i class="fa fa-twitter"></i></a>
             <a href="https://www.facebook.com/StirlingLiveMusic/" style="color:white; font-size:25px;"><i class="fa fa-facebook"></i></a>
             <a href="https://www.instagram.com/stirlinglivemusic/?hl=en"style="color:white; font-size:25px;"><i class="fa fa-instagram"></i></a>

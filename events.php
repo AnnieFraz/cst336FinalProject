@@ -1,6 +1,4 @@
 <?php
-//Include the event calendar functions file
-
 ?>
 <html>
 <head>
@@ -10,15 +8,9 @@
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
         <link type="text/css" rel="stylesheet" href="style.css"/>
-        
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-  
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        
-
-        
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="jquery.min.js"></script>
         </head>
@@ -195,7 +187,7 @@ body {font-family: Verdana, sans-serif;}
                     </thead>
                     <tbody></tbody>
                 </table>
-                <img class="loading" src="loading_spinner.gif" />
+                <img class="loading" src="img/loading_spinner.gif" />
             <!--</div>-->
             </center>
              <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -269,41 +261,6 @@ body {font-family: Verdana, sans-serif;}
                         $(".loading").hide()
                     });
             })
-                    /*
-                    .done(function(data) {
-                        console.log("Events:", data);
-
-                            console.log(data.events.id)
-                            var data1 = data.events[number];
-
-                            $('#ul >body')
-                                    .append($('<div class="modal fade" id="myModal"  role="dialog">'))
-                                    .append($('<div class="modal-dialog">'))
-                                    .append($('<div class="modal-content">'))
-        .append($('<div class="modal-header">'))
-          .append($('<button type="button" class="close" data-dismiss="modal">&times;</button>'))
-                                        .append($('<h4 class="modal-title">Adopt Me</h4>'))
-                                        .append($('</div>'))
-                                        .append($('<div class="modal-body">'))
-                                        .append($('<img src=img/'+data1.pictureURL+' style="width:200px;">'))
-                                        .append($('<p><h3>'+data1.title+'</h3></p>'))
-                                        .append($('<p>'+data1.date+'</p>'))
-                                        .append($('<p>'+data1.time+'</p>'))
-                                        .append($('<p>'+data1.location+'</p>'))
-                                        .append($('</div>'))
-                                        .append($('<div class="modal-footer">'))
-                                        .append($('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'))
-                                        .append($('</div>'))
-                                        .append($('</div>'))
-                                        .append($('</div>'))
-                                        .append($('</div>'))
-                                        .append($('</div>'));
-                                        
-                        
-                                    
-                        }*/
-                   
-    
             </script>
     </script>
         </body>
@@ -317,5 +274,4 @@ body {font-family: Verdana, sans-serif;}
             <h3>Live Music Society - University of Stirling</h3>
             <br></br>
         </footer>
-        
 </html>

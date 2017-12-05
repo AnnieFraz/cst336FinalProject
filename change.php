@@ -1,4 +1,7 @@
-
+<?php
+include 'connection.php';
+$conn = getDatabaseConnection();
+?>
  
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +10,6 @@
   <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
                  <link href="css/styles.css" rel="stylesheet">
     </head>
-</head>
 
 <body>
   <div class = 'container'>
@@ -32,16 +34,10 @@
                     <input type="number" name="quantity" min="1" max="5"><br>
                     <input type='submit' name='Submit' value='Submit'/>                </fieldset>
             </form>
-          <?php
- include 'connection.php';
- $conn = getDatabaseConnection();
- 
-
- 
- 
+            <?php
  if (isset($_GET['changeForm'])){
      global $conn;
-     $sql = " UPDATE  `room_booking` SET  `date_booked_for` =  :firstName,
+     $sql = " UPDATE  `room_booking` SET  `date_booked_for` =  :date,
 `time_booked_for` =  :time,
 `length_of_stay` =  :quantity WHERE  `admin_id` =:id";
  
@@ -56,8 +52,6 @@
     $statement->execute($namedParameters);    
       echo "Record has been updated!";
  }
- 
  ?>
-    
-      </body>
-      </html>
+    </body>
+</html>

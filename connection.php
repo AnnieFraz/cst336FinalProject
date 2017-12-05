@@ -7,10 +7,10 @@ function getDatabaseConnection() {
         $password = "";
         
         // Create connection
-        $dbConn = new PDO("mysql:host=$dbHost;port=$dbPort;dbname=$dbName", $username, $password);
-        $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = new PDO("mysql:host=$dbHost;port=$dbPort;dbname=$dbName", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    return $dbConn; 
+    return $conn; 
 }
 
 
