@@ -1,6 +1,6 @@
 <?php
 function getDatabaseConnection() {
-    $dbHost = getenv('DATABASE_HOST');
+        $dbHost = getenv('DATABASE_HOST');
         $dbPort = getenv('DATABASE_PORT');
         $dbName = getenv('DATABASE_NAME');
         $username = getenv('USERNAME');

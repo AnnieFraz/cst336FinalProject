@@ -108,14 +108,14 @@
 </form>
 <?php
 //Database connection
-include 'connection.php';
+include 'connection2.php';
 $conn = getDatabaseConnection();
 
 //Getting the user's id
 session_start(); 
 echo $_SESSION['username'];
 $username = $_SESSION['username'];
-echo $username;
+//echo $username;
 $sqlID = "SELECT `admin_id` FROM `admin` WHERE `username`= :name" ;
 $namedParameters = array();
 $namedParameters[':name'] = $username;
@@ -124,7 +124,8 @@ $statement2->execute($namedParameters);
 $results = $statement2->fetchAll();
 
 foreach ($results as $record) {
-echo $record['admin_id'];
+//echo
+$record['admin_id'];
 }
 
 $id2 = $record['admin_id'];
@@ -152,7 +153,7 @@ $stmt->execute($namedParameters);
 ?>
 <?php
 include 'loginProcess.php';
-echo $username;
+//echo $username;
 ?>
 <h2>Your Bookings
 </h2>

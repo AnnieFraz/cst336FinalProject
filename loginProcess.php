@@ -1,12 +1,12 @@
 <?php
 session_start(); //starts or resumes an existing session
 
-include 'connection.php';
+include 'connection2.php';
 $conn = getDatabaseConnection();
 
 
 $username = $_POST['username'];
-$password = $_POST['password1'];
+$password = $_POST['password'];
 
 
 $sql = "SELECT *

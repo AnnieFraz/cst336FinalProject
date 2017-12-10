@@ -1,6 +1,6 @@
 <?php
 //Connecting to database
-include 'connection.php';
+include 'connection2.php';
 $conn = getDatabaseConnection();
 ?>
 <html>
@@ -44,7 +44,7 @@ $conn = getDatabaseConnection();
     </br>
   <label for='password'>Password*:
   </label>
-  <input type="password" name='password1' id='password1' maxLength="50"  placeholder="Enter Password" required/>
+  <input type="password" name='password' id='password' maxLength="50"  placeholder="Enter Password" required/>
   <br>
   <br>
   <input type='submit' value="Log in" name="LoginForm"/>               
@@ -55,6 +55,7 @@ $conn = getDatabaseConnection();
 <br>
 </br>
 <!--order room bookings-->
+
 <center>
 <label for='order'>Order By:
   </label>
@@ -64,6 +65,30 @@ $conn = getDatabaseConnection();
   <option value="DESC"> Latest
   </option>
 </select>
+
+<?php
+
+    $username = $_POST['username'];
+    $password = sha1($POST['password1']);
+    print_r($_POST);
+    
+    echo $password;
+    
+    $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
+    
+    $stmt = $conn -> prepare($sql);
+    $stmt ->execute();
+    $record = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    print_r($record);
+    
+    if (empty($record)){
+        
+        echo " <br> wrong credintials";
+    }else{
+        header("Location: makeBooking.php");;
+    }
+?>
 <center>
   </center>
   <?php
@@ -110,6 +135,8 @@ $count = $stmCount->execute();
 $count2 = $stmCount->rowCount();
 //echo $count2;
 $resultCount = $stmCount->fetchAll();
+$record = $stmCount->fetch(PDO::FETCH_ASSOC);
+echo $record;
 //echo $resultCount;
 echo"<br><p>The number of people who have booked the room today is ".$count2."</p>";
 

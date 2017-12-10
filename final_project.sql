@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2017 at 06:23 AM
+-- Generation Time: Dec 10, 2017 at 06:29 PM
 -- Server version: 5.5.57-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.22
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `admin_name` varchar(35) NOT NULL,
   `admin_email` varchar(35) NOT NULL,
   PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `admin`
@@ -59,7 +59,9 @@ INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_em
 (20, 'FraserLundie', '25ab86bed149ca6ca9c1c0d5db7c9a91388', 'Fraser', 'fraserlundie@students.stir.ac.uk'),
 (21, 'GrahamBlair', '25ab86bed149ca6ca9c1c0d5db7c9a91388', 'Graham', 'grahamblair@students.stir.ac.uk'),
 (22, 'KateJardine', '25ab86bed149ca6ca9c1c0d5db7c9a91388', 'Kate', 'katejardine@students.stir.ac.uk'),
-(23, 'AngusGillespie', '25ab86bed149ca6ca9c1c0d5db7c9a91388', 'Angus', 'angusgillespie@students.stir.ac.uk');
+(23, 'AngusGillespie', '25ab86bed149ca6ca9c1c0d5db7c9a91388', 'Angus', 'angusgillespie@students.stir.ac.uk'),
+(24, 'admin', '25ab86bed149ca6ca9c1c0d5db7c9a91388', 'admin', 'admin@students.stir.ac.uk'),
+(25, 'admin2', 's3cr3t', '', '');
 
 -- --------------------------------------------------------
 
