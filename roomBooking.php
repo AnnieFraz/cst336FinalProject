@@ -70,9 +70,9 @@ $conn = getDatabaseConnection();
 
     $username = $_POST['username'];
     $password = sha1($POST['password1']);
-    print_r($_POST);
+    //print_r($_POST);
     
-    echo $password;
+    //echo $password;
     
     $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
     
@@ -80,7 +80,7 @@ $conn = getDatabaseConnection();
     $stmt ->execute();
     $record = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    print_r($record);
+    //print_r($record);
     
     if (empty($record)){
         
@@ -113,6 +113,8 @@ $statement = $conn->prepare($sql);
 $statement->execute($namedParameters);
 $results = $statement->fetchAll();
 
+
+
 //Display results
 echo "<table border=1><tr><td><strong>DATE</strong></td><td><strong>TIME</strong></td></tr>";
 foreach ($results as $record) {
@@ -128,44 +130,61 @@ echo "</table>";
 $namedParameters2 = array();
 $namedParameters2[':date'] = $date2;
 
+
+/*
+//Could not get to work
 //Aggregate function:count
-$sqlCount = "SELECT COUNT(`room_booking_id`) FROM `room_booking` WHERE `date_booked_for` = $date2";
-$stmCount = $conn->prepare($sqlCount); 
-$count = $stmCount->execute();
-$count2 = $stmCount->rowCount();
-//echo $count2;
-$resultCount = $stmCount->fetchAll();
-$record = $stmCount->fetch(PDO::FETCH_ASSOC);
-echo $record;
-//echo $resultCount;
-echo"<br><p>The number of people who have booked the room today is ".$count2."</p>";
+$sqlCount = "SELECT COUNT(`room_booking_id`) as all FROM `room_booking` WHERE `date_booked_for` = :date";
+$namedParameters4 = array();
+$namedParameters4[':date'] = $date2;
+$count = $conn->prepare($sqlCount); 
+$count ->execute($namedParameters4);
 
+echo "<br><p>The number of people who have booked the room today is " ;
+while ($row = $count -> fetch())  {
+echo $row['all'];
+
+}
+*/
 //Aggregate Function: Average
-$sqlAverage = "SELECT AVG(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for` = $date2";
-$stmAvg = $conn->prepare($sqlAverage); 
-$avg = $stmAvg ->execute();
-$resultAvg = $stmAvg->fetchAll();
-$avg2 = $stmAvg->rowCount();
-echo"<br><p>The average room booking length is ".$avg2."</p>";
+$sqlAverage = "SELECT AVG(`length_of_stay`) as banana FROM `room_booking` WHERE `date_booked_for` = :date";
+$namedParameters2 = array();
+$namedParameters2[':date'] = $date2;
+$avg = $conn->prepare($sqlAverage); 
+$avg ->execute($namedParameters2);
+//$resultAvg = $stmAvg->fetchAll();
+//$avg2 = $stmAvg->rowCount();
 
+echo"<br><p>The average room booking length is ";; 
+while ($row = $avg -> fetch())  {
+echo $row['banana'];
+//echo "test";
+}
+echo "</p>";
 //Aggregate Function: Min
-$sqlMin = "SELECT MIN(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for`  = $date2";
-$stmMin = $conn->prepare($sqlMin); 
-$min= $stmMin ->execute();
-//echo $min;
-$min2 = $stmMin->rowCount();
-$resultMin = $stmMin->fetchAll();
+$sqlMin = "SELECT MIN(`length_of_stay`) as tiny FROM `room_booking` WHERE `date_booked_for`  = :date";
+$namedParameters3 = array();
+$namedParameters3[':date'] = $date2;
+$min = $conn->prepare($sqlMin); 
+$min ->execute($namedParameters3);
 
-echo "<br><p>The minimum length of room stay is ".$min2."</p>";
+echo "<br><p>The minimum length of room stay is ";
+while ($row = $min -> fetch())  {
+echo $row['tiny'];
+
+} //resultmin here
 
 //Aggregate FUNCTION: Max
-$sqlMax = "SELECT MAX(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for`  = $date2";
-$stmMax = $conn->prepare($sqlMax);   
-$max = $stmMax ->execute();
-$resultMax = $stmMax->fetch(PDO::FETCH_ASSOC);
-//echo $resultMax;
-$max2 = $stmMax->rowCount();
-echo "<br><p>The maximum length of room stay is ".$max2."</p>";
+$sqlMax = "SELECT MAX(`length_of_stay`) as big FROM `room_booking` WHERE `date_booked_for`  = :date";
+$namedParameters4 = array();
+$namedParameters4[':date'] = $date2;
+$max = $conn->prepare($sqlMax); 
+$max ->execute($namedParameters4);
+echo "<br><p>The maximum length of room stay is ";
+while ($row = $max -> fetch())  {
+echo $row['big'];
+
+}
 ?>
 </center>
 </body>
