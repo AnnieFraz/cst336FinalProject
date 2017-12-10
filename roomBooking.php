@@ -1,6 +1,6 @@
 <?php
 //Connecting to database
-include 'connection2.php';
+include 'connection.php';
 $conn = getDatabaseConnection();
 ?>
 <html>

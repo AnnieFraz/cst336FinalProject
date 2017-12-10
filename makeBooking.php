@@ -108,7 +108,7 @@
 </form>
 <?php
 //Database connection
-include 'connection2.php';
+include 'connection.php';
 $conn = getDatabaseConnection();
 
 //Getting the user's id

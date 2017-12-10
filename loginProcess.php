@@ -1,7 +1,7 @@
 <?php
 session_start(); //starts or resumes an existing session
 
-include 'connection2.php';
+include 'connection.php';
 $conn = getDatabaseConnection();
 
 
