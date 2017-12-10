@@ -1,10 +1,10 @@
 <?php
 function getDatabaseConnection() {
-    $dbHost = getenv('DATABASE_HOST');
-        $dbPort = getenv('DATABASE_PORT');
-        $dbName = getenv('DATABASE_NAME');
-        $username = getenv('USERNAME');
-        $password = getenv('PASSWORD');
+    $dbHost = getenv('IP');
+        $dbPort = 3306;
+        $dbName = "final_project";
+        $username = "anniefraz";
+        $password = "";
         
         // Create connection
         $conn = new PDO("mysql:host=$dbHost;port=$dbPort;dbname=$dbName", $username, $password);
