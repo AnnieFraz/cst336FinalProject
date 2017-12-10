@@ -19,17 +19,12 @@ $conn = getDatabaseConnection();
     <!--Nav Bar-->
     <nav>
       <hr width="50%"/>
-      <a href="index.php">Home
-      </a>
-      <a href="about.php">About
-      </a>
-      <a href="events.php">Events
-      </a>
+      <a href="index.php">Home</a>
+      <a href="about.php">About</a>
+      <a href="events.php">Events</a>
       <a href="roomBooking.php">
-        <strong>Room Booking</strong><!--Highlights what page on-->
-      </a>
-    <a href="contact.php">Contact
-    </a>
+        <strong>Room Booking</strong><!--Highlights what page on--></a>
+    <a href="contact.php">Contact</a>
     </nav>
   <body>
     <br>
@@ -49,7 +44,7 @@ $conn = getDatabaseConnection();
     </br>
   <label for='password'>Password*:
   </label>
-  <input type="text" name='password1' id='password1' maxLength="50"  placeholder="Enter Password" required/>
+  <input type="password" name='password1' id='password1' maxLength="50"  placeholder="Enter Password" required/>
   <br>
   <br>
   <input type='submit' value="Log in" name="LoginForm"/>               
@@ -60,20 +55,26 @@ $conn = getDatabaseConnection();
 <br>
 </br>
 <!--order room bookings-->
+<center>
+<label for='order'>Order By:
+  </label>
 <select name="order">
-  <option value="ASC"> A-Z 
+  <option value="ASC"> Earliest 
   </option>
-  <option value="DESC"> Z-A 
+  <option value="DESC"> Latest
   </option>
 </select>
 <center>
+  </center>
   <?php
 //Displaying todays bookings
 $date = date("d/m/Y");
 $date2 = date("Y-m-d");
+//echo $date2;
 echo"<h2>Room Bookings for Today: ".$date."</h2>";
 
 $order =$_POST['order'];
+
 $sql = "SELECT * 
 FROM  `room_booking`
 WHERE  `date_booked_for` = :date 
@@ -88,7 +89,7 @@ $statement->execute($namedParameters);
 $results = $statement->fetchAll();
 
 //Display results
-echo "<table border=1><tr><td><strong>DATE</strong></td><td><strong>TIME</strong></td><td><strong>LENGTH</strong></td></tr>";
+echo "<table border=1><tr><td><strong>DATE</strong></td><td><strong>TIME</strong></td></tr>";
 foreach ($results as $record) {
 echo "</td><td>";
 echo $record['date_booked_for'];
@@ -101,34 +102,47 @@ echo "</td></tr>";
 echo "</table>";
 $namedParameters2 = array();
 $namedParameters2[':date'] = $date2;
+//echo $date2;
 
+//$var2 = (string) $date2;
+//echo $var2;
+//$var3 = "$var2";
 //Aggregate function:count
-$sqlCount = "SELECT COUNT(`room_booking_id`) FROM `room_booking` WHERE `date_booked_for` = :date";
+$sqlCount = "SELECT COUNT(`room_booking_id`) FROM `room_booking` WHERE `date_booked_for` = $date2";
 $stmCount = $conn->prepare($sqlCount); 
-$stmCount->execute($namedParameters2);
+$count = $stmCount->execute();
+$count2 = $stmCount->rowCount();
+//echo $count2;
 $resultCount = $stmCount->fetchAll();
-echo"<br><p>The number of people who have booked the room today is ".[$resultCount]."</p>";
+//echo $resultCount;
+echo"<br><p>The number of people who have booked the room today is ".$count2."</p>";
 
 //Aggregate Function: Average
-$sqlAverage = "SELECT AVG(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for` = :date" ;
+$sqlAverage = "SELECT AVG(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for` = $date2";
 $stmAvg = $conn->prepare($sqlAverage); 
-$stmAvg ->execute($namedParameters2);
+$avg = $stmAvg ->execute();
 $resultAvg = $stmAvg->fetchAll();
-echo"<br><p>The average room booking length is ".[$resultAvg]."</p>";
+$avg2 = $stmAvg->rowCount();
+echo"<br><p>The average room booking length is ".$avg2."</p>";
 
 //Aggregate Function: Min
-$sqlMin = "SELECT MIN(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for` = :date" ;
+$sqlMin = "SELECT MIN(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for`  = $date2";
 $stmMin = $conn->prepare($sqlMin); 
-$stmMin ->execute($namedParameters2);
+$min= $stmMin ->execute();
+//echo $min;
+$min2 = $stmMin->rowCount();
 $resultMin = $stmMin->fetchAll();
-echo "<br><p>The minimum length of room stay is".[$resultMin]."</p>";
+
+echo "<br><p>The minimum length of room stay is ".$min2."</p>";
 
 //Aggregate FUNCTION: Max
-$sqlMax = "SELECT MAX(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for` = :date";
+$sqlMax = "SELECT MAX(`length_of_stay`) FROM `room_booking` WHERE `date_booked_for`  = $date2";
 $stmMax = $conn->prepare($sqlMax);   
-$stmMax ->execute($namedParameters2);
-$resultMax = $stmMax->fetchAll();
-echo "<br><p>The minimum length of room stay is".[$resultMax]."</p>";
+$max = $stmMax ->execute();
+$resultMax = $stmMax->fetch(PDO::FETCH_ASSOC);
+echo $resultMax;
+$max2 = $stmMax->rowCount();
+echo "<br><p>The maximum length of room stay is ".$max2."</p>";
 ?>
 </center>
 </body>

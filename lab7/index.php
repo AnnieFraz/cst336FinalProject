@@ -18,7 +18,7 @@
         <?php
 $username = $_POST['username'];
     $password = sha1($POST['password1']);
-    print_r($_POST);
+    //print_r($_POST);
     
     echo $password;
     

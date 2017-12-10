@@ -6,7 +6,6 @@
         <link rel="shortcut icon" href="img/logo.jpg" type="image/png">
         <title>SU Live Music Society</title>
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
-        
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         

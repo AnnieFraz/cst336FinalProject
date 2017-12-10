@@ -2,7 +2,7 @@
 function getDatabaseConnection() {
     $dbHost = getenv('IP');
         $dbPort = 3306;
-        $dbName = "final_project";
+        $dbName = "lab6";
         $username = "anniefraz";
         $password = "";
         
