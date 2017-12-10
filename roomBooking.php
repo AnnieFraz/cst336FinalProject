@@ -84,7 +84,7 @@ $conn = getDatabaseConnection();
     
     if (empty($record)){
         
-        echo " <br> wrong credintials";
+        //echo " <br> wrong credintials";
     }else{
         header("Location: makeBooking.php");;
     }
