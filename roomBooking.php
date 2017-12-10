@@ -102,11 +102,7 @@ echo "</td></tr>";
 echo "</table>";
 $namedParameters2 = array();
 $namedParameters2[':date'] = $date2;
-//echo $date2;
 
-//$var2 = (string) $date2;
-//echo $var2;
-//$var3 = "$var2";
 //Aggregate function:count
 $sqlCount = "SELECT COUNT(`room_booking_id`) FROM `room_booking` WHERE `date_booked_for` = $date2";
 $stmCount = $conn->prepare($sqlCount); 
@@ -140,7 +136,7 @@ $sqlMax = "SELECT MAX(`length_of_stay`) FROM `room_booking` WHERE `date_booked_f
 $stmMax = $conn->prepare($sqlMax);   
 $max = $stmMax ->execute();
 $resultMax = $stmMax->fetch(PDO::FETCH_ASSOC);
-echo $resultMax;
+//echo $resultMax;
 $max2 = $stmMax->rowCount();
 echo "<br><p>The maximum length of room stay is ".$max2."</p>";
 ?>

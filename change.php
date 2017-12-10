@@ -27,10 +27,6 @@ $conn = getDatabaseConnection();
         </nav>
 
     <div>
-        <?$record= getMemberById()?>
-        
-
-      
             <form id='Change Booking'  method='POST' accept-charset='UTF-8'>
                 <fieldset>
                     <center>
@@ -39,8 +35,8 @@ $conn = getDatabaseConnection();
                     <input type="hidden" name="admin_Id" value="<?=$authorInfo['admin_Id']?>">
                     <input type='hidden' name='submitted' id='submitted' value='1'/>
                     <label for='date_selected'>When do you want to book the room?:</label>
-                    <!--<input type="date" data-date-inline-picker="true" name='date_selected' id='date_selected' min="2017-12-01" max="2017-12-31" required/>-->
-                    <select name='date_selected' id='date_selected'>
+                    <input type="date" data-date-inline-picker="true" name='date_selected' id='date_selected'  required/>
+                    <!--<select name='date_selected' id='date_selected'>
                        <option value="2017-12-01">2017-12-01</option>
                        <option value="2017-12-02">2017-12-02</option>
                        <option value="2017-12-03">2017-12-03</option>
@@ -72,7 +68,7 @@ $conn = getDatabaseConnection();
                        <option value="2017-12-29">2017-12-29</option>
                        <option value="2017-12-30">2017-12-30</option>
                        <option value="2017-12-31">2017-12-31</option>
-                      </select>
+                      </select>-->
   
                     <br></br>
                     <label for='time'>What Time(military time):</label>
@@ -97,36 +93,40 @@ $conn = getDatabaseConnection();
                     </fieldset>
             </form>
             <?php
-            if (isset($_GET['authorId'])) {
-    $authorInfo = getId();  
+ session_start(); // this NEEDS TO BE AT THE TOP of the page before any output etc
+   echo $_SESSION['username'];
+   $username = $_SESSION['username'];
+   echo $username;
+   
+
+//function getID($username){
+    $sqlID = "SELECT `admin_id` FROM `admin` WHERE `username`= :name" ;
+    $namedParameters = array();
+    $namedParameters[':name'] = $username;
+    $statement2 = $conn->prepare($sqlID);    
+$statement2->execute($namedParameters);
+$results = $statement2->fetchAll();
     
-    //print_r($authorInfo);
-    
-}
-function getID(){
-    global $conn;
-        
-    $sql = "SELECT *
-            FROM admin
-            WHERE admin_id = " . $_GET['admin_id'];    
-     
-    $stmt = $conn->prepare($sql);
-    $stmt->execute($namedParameters);
-    $record = $stmt->fetch(PDO::FETCH_ASSOC);  
-    return $record;
-}
+    foreach ($results as $record) {
+	
+	echo $record['admin_id'];
+    }
+    $id2 = $record['admin_id'];
+    //echo $id2;
             
  if (isset($_GET['changeForm'])){
      global $conn;
      $sql = " UPDATE  `room_booking` SET  `date_booked_for` =  :date,
 `time_booked_for` =  :time,
-`length_of_stay` =  :quantity WHERE  `admin_id` =:id";
+`length_of_stay` =  :quantity WHERE  `admin_id` =:id AND `room_booking_id` = :roomId";
  
  $namedParameters = array();
  $namedParameters[':date'] = $_GET['date'];
  $namedParameters[':time'] = $_GET['lastName'];
  $namedParameters[':quantity'] = $_GET['quantity'];
- $namedParameters[':id'] = $_GET['admin_id'];
+ $namedParameters[':id'] = $id2;
+ $namedParameters[':RoomId'] = $id2;
+ 
  
   $conn = getDatabaseConnection();    
     $statement = $conn->prepare($sql);
